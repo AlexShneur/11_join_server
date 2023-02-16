@@ -7,19 +7,19 @@ project(join_server VERSION ${PROJECT_VERSION})
 
 find_package(Boost COMPONENTS system REQUIRED)
 
-add_executable(join_server main.cpp)
+add_executable(join_server main.cpp sqlite3)
 
 set_target_properties(join_server PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
 )
 
-set_target_properties(join_server sqlite3 PROPERTIES
+set_target_properties(join_server PROPERTIES
         COMPILE_DEFINITIONS BOOST_TEST_DYN_LINK
         INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}
 )
 
-target_include_directories(join_server sqlite3
+target_include_directories(join_server
     PRIVATE "${CMAKE_BINARY_DIR}"
 )
 
