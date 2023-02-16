@@ -14,17 +14,17 @@ set_target_properties(join_server PROPERTIES
     CXX_STANDARD_REQUIRED ON
 )
 
-set_target_properties(join_server PROPERTIES
+set_target_properties(join_server sqlite3 PROPERTIES
         COMPILE_DEFINITIONS BOOST_TEST_DYN_LINK
         INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}
 )
 
-target_link_libraries(join_server
-	${Boost_LIBRARIES}
+target_include_directories(join_server sqlite3
+    PRIVATE "${CMAKE_BINARY_DIR}"
 )
 
-target_include_directories(join_server
-    PRIVATE "${CMAKE_BINARY_DIR}"
+target_link_libraries(join_server
+	${Boost_LIBRARIES}
 )
 
 install(TARGETS join_server RUNTIME DESTINATION bin)
